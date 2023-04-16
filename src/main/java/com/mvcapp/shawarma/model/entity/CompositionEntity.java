@@ -1,6 +1,9 @@
 package com.mvcapp.shawarma.model.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
 
 @Entity
 @Table(name = "composition")

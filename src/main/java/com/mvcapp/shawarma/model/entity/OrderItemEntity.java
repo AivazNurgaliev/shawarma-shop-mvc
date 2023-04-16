@@ -1,7 +1,9 @@
 package com.mvcapp.shawarma.model.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "order_items")
 @IdClass(OrderItemCompositeId.class)

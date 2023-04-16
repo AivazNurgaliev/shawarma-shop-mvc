@@ -2,11 +2,13 @@ package com.mvcapp.shawarma.model.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.sql.Timestamp;
 import java.util.List;
 
 // TODO: 15.04.2023 использовать еще регексы(скорее в дто закинуть в рекордс)
+@Data
 @Entity
 @Table(name = "users")
 public class UserEntity {

@@ -2,9 +2,11 @@ package com.mvcapp.shawarma.model.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "categories")
 public class CategoryEntity {
