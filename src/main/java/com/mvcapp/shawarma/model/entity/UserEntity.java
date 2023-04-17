@@ -1,7 +1,7 @@
 package com.mvcapp.shawarma.model.entity;
 
 
-import com.mvcapp.shawarma.model.security.Role;
+//import com.mvcapp.shawarma.model.security.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -35,9 +35,9 @@ public class UserEntity {
     private String password;
 
     // TODO: 15.04.2023 затычка для роли пока что
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "role")
-    private Role role;
+//    @Enumerated(value = EnumType.STRING)
+//    @Column(name = "role")
+//    private Role role;
 
     @Column(name = "created_at")
     private Timestamp createdAt;
