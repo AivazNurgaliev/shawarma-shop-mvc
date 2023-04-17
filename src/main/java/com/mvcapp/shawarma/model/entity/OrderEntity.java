@@ -15,14 +15,12 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
     @Column(name = "user_id", nullable = false)
-    private int userId;
+    private Integer userId;
 
     @Column(name = "order_date", nullable = false)
     private Timestamp orderDate;
-
-    @Column(name = "order_status", nullable = true, length = 255)
-    private String orderStatus;
 
     @ManyToOne
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
