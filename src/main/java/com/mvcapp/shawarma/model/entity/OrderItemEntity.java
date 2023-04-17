@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "order_items")
-@IdClass(OrderItemCompositeId.class)
+@IdClass(OrderItemCompositePK.class)
 public class OrderItemEntity {
 
     @Id
