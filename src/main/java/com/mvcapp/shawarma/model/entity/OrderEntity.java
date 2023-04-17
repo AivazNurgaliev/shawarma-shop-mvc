@@ -16,6 +16,7 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
     @Column(name = "user_id", nullable = false)
     private Integer userId;
 
