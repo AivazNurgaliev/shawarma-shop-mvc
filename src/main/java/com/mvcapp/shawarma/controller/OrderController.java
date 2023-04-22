@@ -5,9 +5,7 @@ import com.mvcapp.shawarma.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +19,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+//    @PreAuthorized
     @GetMapping("/{userId}")
     public String getByClientId(@PathVariable Integer userId, Model model) {
         List<OrderEntity> userOrders = orderService.findByUserId(userId);
@@ -34,8 +33,15 @@ public class OrderController {
         List<OrderEntity> userOrders = orderService.findByUserId(userId);
         model.addAttribute("userOrders", userOrders);
         return "order";
-
+    }
+    @DeleteMapping("/delete/{id}")
+    public String deleteById(@PathVariable Integer id){
+        orderService.deleteById(id);
+        return "deleted";//TODO: ???
     }
 
+
+//    @PostMapping("/add")
+//    public String addOrder(@RequestBody OrderEntity)
 
 }

@@ -1,0 +1,33 @@
+<!-- products.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Products</title>
+</head>
+<body>
+<h1>All Products</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loop over the products and add rows to the table -->
+    <th:block th:each="product : ${products}">
+        <tr>
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.category.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.description}"></td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>

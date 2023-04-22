@@ -65,3 +65,56 @@ CREATE TABLE order_items
     FOREIGN KEY (product_id) REFERENCES products (id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (order_id) REFERENCES orders (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
+INSERT INTO users (first_name, last_name, email, phone_number, password, role, created_at)
+VALUES ('Иван', 'Иванов', 'ivanov@mail.ru', '+7 (999) 123-45-67', '12345', 'admin', NOW()),
+       ('Петр', 'Петров', 'petrov@mail.ru', '+7 (999) 765-43-21', '54321', 'user', NOW()),
+       ('Анна', 'Сидорова', 'sidorova@mail.ru', '+7 (999) 111-22-33', '11111', 'user', NOW());
+
+INSERT INTO categories (name)
+VALUES ('Классические шаурмы'),
+       ('Шаурмы с курицей'),
+       ('Шаурмы с говядиной'),
+       ('Шаурмы с овощами');
+
+INSERT INTO products (name, category_id, price, description)
+VALUES ('Классическая шаурма', 1, 150, 'Ароматная шаурма с мясом и овощами'),
+       ('Куриная шаурма', 2, 130, 'Нежное куриное мясо с овощами и соусом'),
+       ('Говяжья шаурма', 3, 180, 'Сочное говяжье мясо с овощами и специями'),
+       ('Овощная шаурма', 4, 100, 'Свежие овощи с соусом и специями');
+
+INSERT INTO ingredients (name)
+VALUES ('Мясо'),
+       ('Лаваш'),
+       ('Овощи'),
+       ('Соус'),
+       ('Специи');
+
+INSERT INTO composition (product_id, ingredient_id)
+VALUES (1, 1),
+       (1, 2),
+       (1, 3),
+       (1, 4),
+       (1, 5),
+       (2, 2),
+       (2, 3),
+       (2, 4),
+       (2, 5),
+       (3, 1),
+       (3, 2),
+       (3, 3),
+       (3, 4),
+       (3, 5),
+       (4, 2),
+       (4, 3),
+       (4, 4),
+       (4, 5);
+
+INSERT INTO orders (user_id, order_date)
+VALUES (2, NOW()),
+       (3, NOW());
+
+INSERT INTO orderitems (order_id, product_id, product_count, product_price)
+VALUES (1, 1, 2, 300),
+       (1, 2, 1, 130),
+       (2, 3, 3, 540),
+       (2, 4, 2, 200);

@@ -6,8 +6,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
-
+import com.mvcapp.shawarma.model.entity.ProductEntity;
 // TODO: 15.04.2023 использовать еще регексы(скорее в дто закинуть в рекордс)
 @Data
 @Entity
@@ -44,5 +45,8 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderEntity> orders;
+
+    @Transient
+    private List<ProductEntity> cart = new ArrayList<>();
 
 }
