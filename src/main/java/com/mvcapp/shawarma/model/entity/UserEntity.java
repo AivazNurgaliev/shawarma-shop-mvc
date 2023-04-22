@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 // TODO: 15.04.2023 использовать еще регексы(скорее в дто закинуть в рекордс)
@@ -51,4 +52,6 @@ public class UserEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderEntity> orders;
 
+    @Transient
+    private List<ProductEntity> cart = new ArrayList<>();
 }

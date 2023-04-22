@@ -10,6 +10,7 @@ import com.mvcapp.shawarma.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -20,12 +21,13 @@ import java.util.Date;
 public class UserService {
 
     private final UserRepository userRepo;
-    //private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepo) {
+    public UserService(UserRepository userRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
         //this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public UserEntity getMe() throws UserDoesNotExistException {
@@ -50,7 +52,7 @@ public class UserService {
         user.setLastName(request.getLastName());
         user.setPhoneNumber(request.getPhone());
         // TODO: 17.04.2023 сделать пассвворд енкодер
-        user.setPassword(request.getPassword());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
 
         return user;
     }
@@ -65,9 +67,10 @@ public class UserService {
         var user = UserEntity.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
+                .phoneNumber(request.getPhone())
                 .email(request.getEmail())
-                //.password(passwordEncoder.encode(request.getPassword()))
-                .password(request.getPassword())
+                .password(passwordEncoder.encode(request.getPassword()))
+                //.password(request.getPassword())
                 .role(Role.USER)
                 .createdAt(new Timestamp(new Date().getTime()))
                 .build();
