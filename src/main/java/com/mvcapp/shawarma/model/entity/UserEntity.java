@@ -55,5 +55,4 @@ public class UserEntity {
 
     @Transient
     private List<ProductEntity> cart = new ArrayList<>();
-
 }
