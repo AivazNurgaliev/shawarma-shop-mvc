@@ -1,52 +1,26 @@
-<!-- cart.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Shopping Cart</title>
+    <title>Cart</title>
 </head>
 <body>
-<h1>Shopping Cart</h1>
-<!-- Check if there are any items in the cart -->
-<th:block th:if="${not #lists.isEmpty(cartItems)}">
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Loop over the cart items and add rows to the table -->
-        <th:block th:each="item : ${cartItems}">
-            <tr>
-                <td th:text="${item.name}"></td>
-                <td th:text="${'$' + item.price}"></td>
-                <td><a href="#" onclick="removeFromCart(${item.id})">Remove</a></td>
-            </tr>
-        </th:block>
-        </tbody>
-    </table>
-    <p>Total: <strong th:text="'$' + ${cartTotal}"></strong></p>
-    <a href="/checkout">Checkout</a>
-</th:block>
-<!-- If the cart is empty, show a message -->
-<th:block th:if="${#lists.isEmpty(cartItems)}">
-    <p>Your cart is empty.</p>
-</th:block>
-
-<script>
-    function removeFromCart(productId) {
-        fetch('/cart/' + productId + '/remove', {method: 'POST'})
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                // Refresh the page to show the updated cart
-                window.location.reload();
-            })
-            .catch(error => console.error(error));
-    }
-</script>
+<h1>Cart</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Product Name</th>
+        <th>Count</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cartItem : ${cartItems}">
+        <td th:text="${cartItem.product.name}"></td>
+        <td th:text="${cartItem.countProducts}"></td>
+        <td th:text="${cartItem.product.price}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

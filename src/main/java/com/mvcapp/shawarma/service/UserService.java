@@ -8,6 +8,7 @@ import com.mvcapp.shawarma.model.entity.UserEntity;
 import com.mvcapp.shawarma.model.security.Role;
 import com.mvcapp.shawarma.repository.UserRepository;
 import jakarta.transaction.Transactional;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -99,4 +100,13 @@ public class UserService {
 
         return user.getId();
     }
+    public void save(UserEntity user){
+        userRepo.save(user);
+    }
+
+    public UserEntity findByEmail(String email){
+        return userRepo.findByEmail(email);
+    }
+
+
 }

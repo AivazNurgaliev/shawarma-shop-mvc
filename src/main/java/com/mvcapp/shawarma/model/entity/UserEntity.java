@@ -4,21 +4,19 @@ package com.mvcapp.shawarma.model.entity;
 //import com.mvcapp.shawarma.model.security.Role;
 import com.mvcapp.shawarma.model.security.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import com.mvcapp.shawarma.model.entity.ProductEntity;
 // TODO: 15.04.2023 использовать еще регексы(скорее в дто закинуть в рекордс)
-@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "users")
 public class UserEntity {
 
@@ -53,6 +51,6 @@ public class UserEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderEntity> orders;
 
-    @Transient
-    private List<ProductEntity> cart = new ArrayList<>();
+    @OneToMany(mappedBy = "userCart",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartEntity> userCart;
 }
