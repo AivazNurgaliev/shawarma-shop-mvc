@@ -10,12 +10,12 @@ import lombok.Data;
 public class OrderItemEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private Integer orderId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Integer productId;
 
@@ -32,4 +32,12 @@ public class OrderItemEntity {
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id", insertable = false, updatable = false)
     private ProductEntity product;
+
+    //    public void setOrderItemsId(){
+//
+//    }
+//
+    public OrderItemCompositePK getId() {
+        return new OrderItemCompositePK(this.orderId, this.productId);
+    }
 }
