@@ -25,7 +25,14 @@
             <td th:text="${product.category.name}"></td>
             <td th:text="${product.price}"></td>
             <td th:text="${product.description}"></td>
+            <td>
+                <form th:action="@{'/cart/add/'+ ${product.id}}" method="post">
+                    <input type="submit" value="add to cart">
+                </form>
+                <!--                <a th:href="@{'/cart/add/'+ ${product.id}}">Add to cart</a>-->
+            </td>
         </tr>
+
     </th:block>
     </tbody>
 </table>
