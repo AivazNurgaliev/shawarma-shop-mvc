@@ -44,7 +44,7 @@
         <thead>
         <tr>
             <th>Order ID</th>
-            <th>Product ID</th>
+            <th>Product Name</th>
             <th>Product Count</th>
             <th>Product Price</th>
         </tr>
@@ -52,7 +52,7 @@
         <tbody>
         <tr th:each="orderItem : ${orderItems}">
             <td th:text="${orderItem.orderId}"></td>
-            <td th:text="${orderItem.productId}"></td>
+            <td th:text="${orderItem.productName}"></td>
             <td th:text="${orderItem.productCount}"></td>
             <td th:text="${orderItem.productPrice}"></td>
         </tr>

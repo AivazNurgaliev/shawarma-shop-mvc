@@ -1,7 +1,9 @@
 package com.mvcapp.shawarma.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.mvcapp.shawarma.model.dto.OrderItemDTO;
 import org.springframework.stereotype.Service;
 
 import com.mvcapp.shawarma.model.entity.OrderItemCompositePK;
@@ -19,8 +21,22 @@ public class OrderItemService {
     public List<OrderItemEntity> findAll(){
         return orderItemRepository.findAll();
     }
-    public List<OrderItemEntity> findByOrderId(Integer orderId){
-        return orderItemRepository.findByOrderId(orderId);
+    public List<OrderItemDTO> findByOrderId(Integer orderId) {
+        List<OrderItemDTO> orderItemDTOS = new ArrayList<>();
+
+        List<OrderItemEntity> orderItemEntities = orderItemRepository.findByOrderId(orderId);
+
+        for (OrderItemEntity o : orderItemEntities) {
+            OrderItemDTO orderItemDTO = OrderItemDTO.builder()
+                    .orderId(o.getOrderId())
+                    .productName(o.getProduct().getName())
+                    .productPrice(o.getProductPrice())
+                    .productCount(o.getProductCount())
+                    .build();
+            orderItemDTOS.add(orderItemDTO);
+        }
+
+        return orderItemDTOS;
     }
     public OrderItemEntity save(OrderItemEntity orderItem){
         return orderItemRepository.save(orderItem);

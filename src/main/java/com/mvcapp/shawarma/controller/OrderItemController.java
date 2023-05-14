@@ -1,5 +1,6 @@
 package com.mvcapp.shawarma.controller;
 
+import com.mvcapp.shawarma.model.dto.OrderItemDTO;
 import com.mvcapp.shawarma.model.entity.OrderItemEntity;
 import com.mvcapp.shawarma.model.entity.ProductEntity;
 import com.mvcapp.shawarma.service.ProductService;
@@ -29,7 +30,7 @@ public class OrderItemController {
 
     @GetMapping("/{orderId}")
     public String findByOrderId(@PathVariable Integer orderId, Model model){
-        List<OrderItemEntity> orderItems = orderItemService.findByOrderId(orderId);
+        List<OrderItemDTO> orderItems = orderItemService.findByOrderId(orderId);
         model.addAttribute("orderItems",orderItems);
         return "orderItems";
     }
