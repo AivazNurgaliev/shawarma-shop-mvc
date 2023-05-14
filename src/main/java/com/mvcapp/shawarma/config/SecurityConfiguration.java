@@ -76,7 +76,7 @@ public class SecurityConfiguration {
                         .anyRequest().authenticated())
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .defaultSuccessUrl("/home")
+                        .defaultSuccessUrl("/")
                         .permitAll(true));
 
         return http.build();
