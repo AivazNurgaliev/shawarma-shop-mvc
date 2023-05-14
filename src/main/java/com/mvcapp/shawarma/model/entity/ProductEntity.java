@@ -1,9 +1,9 @@
 package com.mvcapp.shawarma.model.entity;
 
 import jakarta.persistence.*;
+import java.util.List;
 import lombok.Data;
 
-import java.util.List;
 @Data
 @Entity
 @Table(name = "products")
@@ -29,8 +29,4 @@ public class ProductEntity {
     @ManyToOne
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private CategoryEntity category;
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CompositionEntity> compositions;
-
 }

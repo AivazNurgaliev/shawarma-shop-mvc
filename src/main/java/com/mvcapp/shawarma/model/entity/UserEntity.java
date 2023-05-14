@@ -1,16 +1,26 @@
 package com.mvcapp.shawarma.model.entity;
 
-
+// import com.mvcapp.shawarma.model.security.Role;
+import com.mvcapp.shawarma.model.entity.ProductEntity;
 import com.mvcapp.shawarma.model.security.Role;
 import jakarta.persistence.*;
-import lombok.Data;
-
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 // TODO: 15.04.2023 использовать еще регексы(скорее в дто закинуть в рекордс)
-@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "users")
 public class UserEntity {
 
@@ -34,7 +44,6 @@ public class UserEntity {
     @Column(name = "password")
     private String password;
 
-    // TODO: 15.04.2023 затычка для роли пока что
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role")
     private Role role;
@@ -45,4 +54,6 @@ public class UserEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderEntity> orders;
 
+    @OneToMany(mappedBy = "userCart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartEntity> userCart;
 }
