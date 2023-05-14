@@ -106,25 +106,25 @@ public class CartController {
         UserEntity user = userService.findByEmail(authentication.getName());
         Integer userId = user.getId();
         List<CartEntity> userCart = cartRepository.findByUserId(userId);
-        OrderEntity userOrder = new OrderEntity();
-        userOrder.setUserId(userId);
-        userOrder.setOrderDate(new Timestamp(new Date().getTime()));
-        orderRepository.save(userOrder);
+        if (!userCart.isEmpty()) {
+            OrderEntity userOrder = new OrderEntity();
+            userOrder.setUserId(userId);
+            userOrder.setOrderDate(new Timestamp(new Date().getTime()));
+            orderRepository.save(userOrder);
 
-        Integer orderId = userOrder.getId();
-        // List<OrderItemEntity> orderItems = new ArrayList<>();
-        for (CartEntity c : userCart) {
-            OrderItemEntity orderItem = new OrderItemEntity();
-            orderItem.setOrderId(orderId);
-            orderItem.setProductId(c.getProductId());
-            orderItem.setProductCount(c.getCountProducts());
-            orderItem.setProductPrice(c.getProduct().getPrice());
+            Integer orderId = userOrder.getId();
+            // List<OrderItemEntity> orderItems = new ArrayList<>();
+            for (CartEntity c : userCart) {
+                OrderItemEntity orderItem = new OrderItemEntity();
+                orderItem.setOrderId(orderId);
+                orderItem.setProductId(c.getProductId());
+                orderItem.setProductCount(c.getCountProducts());
+                orderItem.setProductPrice(c.getProduct().getPrice());
 
-            orderItemRepository.save(orderItem);
+                orderItemRepository.save(orderItem);
+            }
+            cartRepository.deleteAll(userCart);
         }
-
-        cartRepository.deleteAll(userCart);
-
         return "redirect:/orders";
     }
 }
