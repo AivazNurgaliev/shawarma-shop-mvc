@@ -15,7 +15,10 @@
     </thead>
     <tbody>
     <tr th:each="order : ${userOrders}">
-        <td th:text="${order.id}"></td>
+        <td th:text="${order.id}">
+            <a th:action="@{'/order-items/'+${order.id}}"></a>
+            <!-- TODO:check -->
+        </td>
         <td th:text="${order.orderDate}"></td>
         <td th:text="${order.orderItems.size()}"></td>
     </tr>

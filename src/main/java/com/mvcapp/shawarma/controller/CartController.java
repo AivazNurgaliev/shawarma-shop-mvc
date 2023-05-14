@@ -24,9 +24,7 @@ public class CartController {
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
     private final CartRepository cartRepository;
-
     private final ProductService productService;
-
     private final UserService userService;
 
     public CartController(OrderRepository orderRepository,
@@ -100,7 +98,7 @@ public class CartController {
     }
 
     @Transactional
-    @RequestMapping(value = "/confirm", method = { RequestMethod.POST })
+    @RequestMapping(value = "/confirm", method = { RequestMethod.POST})
     public String confirmCart(Authentication authentication) {
         // TODO: 24.04.2023 all lines with this user id send to order or order items
         // TODO: 24.04.2023 then we need to delete all lines with this user id in
