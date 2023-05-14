@@ -125,6 +125,6 @@ public class CartController {
 
         cartRepository.deleteAll(userCart);
 
-        return "redirect:/"; // FIXME: "redirect:/orders"
+        return "redirect:/orders";
     }
 }
