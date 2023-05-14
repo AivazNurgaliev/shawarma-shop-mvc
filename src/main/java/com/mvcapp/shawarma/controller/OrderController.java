@@ -24,7 +24,7 @@ public class OrderController {
         this.userService = userService;
     }
 
-//        @PreAuthorized
+    // TODO: @PreAuthorized
     @GetMapping("/{userId}")
     public String getByClientId(@PathVariable Integer userId, Model model) {
         List<OrderEntity> userOrders = orderService.findByUserId(userId);
@@ -44,11 +44,10 @@ public class OrderController {
     @DeleteMapping("/delete/{id}")
     public String deleteById(@PathVariable Integer id) {
         orderService.deleteById(id);
-        return "deleted";//TODO: ???
+        return "deleted";// TODO: ???
     }
 
-
-//    @PostMapping("/add")
-//    public String addOrder(@RequestBody OrderEntity)
+    // @PostMapping("/add")
+    // public String addOrder(@RequestBody OrderEntity)
 
 }
