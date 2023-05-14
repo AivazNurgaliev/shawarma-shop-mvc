@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import validator.DataValidator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,8 +22,8 @@ public class UserController {
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
-    private static final String PHONE_PATTERN = "\\+\\d{1,2}\\s?(\\d{1,3})\\s?\\d{3}-\\d{4}";
-    private static final String NAME_PATTERN = "/^[a-z ,.'-]+$/i";
+    private static final String PHONE_PATTERN = "\\+\\d{11}";
+
     public boolean validateEmail(final String email) {
         pattern = Pattern.compile(EMAIL_PATTERN);
         matcher = pattern.matcher(email);
@@ -36,26 +35,11 @@ public class UserController {
         return matcher.matches();
     }
 
-    public boolean validateName(final String name) {
-        pattern = Pattern.compile(NAME_PATTERN);
-        matcher = pattern.matcher(name);
-        return matcher.matches();
-    }
-
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    /*@PostMapping("/registration")
-    public UserEntity register(@RequestBody UserCreateRequest request) {
-        try {
-            return userService.createMe(request);
-        } catch (UserAlreadyExistException e) {
-            throw new RuntimeException("error while registration");
-        }
-
-    }*/
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -73,10 +57,6 @@ public class UserController {
         }
         if (!validatePhone(request.getPhone())) {
             model.addAttribute("error", "Invalid phone");
-            return "registration";
-        }
-        if (!validateName(request.getFirstName()) || !validateName(request.getLastName())) {
-            model.addAttribute("error", "Invalid name");
             return "registration";
         }
 
