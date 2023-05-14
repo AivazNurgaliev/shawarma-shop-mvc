@@ -1,6 +1,8 @@
 package com.mvcapp.shawarma.controller;
 
 import com.mvcapp.shawarma.model.entity.OrderItemEntity;
+import com.mvcapp.shawarma.model.entity.ProductEntity;
+import com.mvcapp.shawarma.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,17 +12,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.mvcapp.shawarma.service.OrderItemService;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import java.util.Set;
 
 
 @Controller
 @RequestMapping("/order-items")
 public class OrderItemController {
     private final OrderItemService orderItemService;
+    private final ProductService productService;
     
-    public OrderItemController(OrderItemService orderItemService){
+    public OrderItemController(OrderItemService orderItemService, ProductService productService){
         this.orderItemService = orderItemService;
+        this.productService = productService;
     }
 
 
