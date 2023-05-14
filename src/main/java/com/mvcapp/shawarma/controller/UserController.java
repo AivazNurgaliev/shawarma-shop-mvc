@@ -42,9 +42,10 @@ public class UserController {
     public String register(@ModelAttribute UserCreateRequest request) {
         try {
             var user = userService.createMe(request);
-            return "redirect:/hello";
+            return "redirect:/home";
         } catch (UserAlreadyExistException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());        }
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
 }

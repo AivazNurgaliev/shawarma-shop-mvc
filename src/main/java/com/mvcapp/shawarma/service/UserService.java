@@ -99,4 +99,11 @@ public class UserService {
 
         return user.getId();
     }
+    public void save(UserEntity user){
+        userRepo.save(user);
+    }
+
+    public UserEntity findByEmail(String email){
+        return userRepo.findByEmail(email);
+    }
 }

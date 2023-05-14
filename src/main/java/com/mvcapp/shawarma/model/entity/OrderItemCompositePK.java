@@ -1,12 +1,16 @@
 package com.mvcapp.shawarma.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.io.Serializable;
-@Data
+
 @Embeddable
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderItemCompositePK implements Serializable {
-    private int orderId;
-    private int productId;
+    private Integer orderId;
+    private Integer productId;
 }
